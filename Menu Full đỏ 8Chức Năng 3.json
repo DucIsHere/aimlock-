@@ -1,0 +1,12 @@
+{
+  "always_run_in_app" : false,
+  "icon" : {
+    "color" : "blue",
+    "glyph" : "magic"
+  },
+  "name" : "Menu Full đỏ 8Chức Năng",
+  "script" : "let password = \"1\"; \n\nlet input = await promptPassword();\n\nif (input === password) {\n  let options = [\"Aimlock\", \"DpiConfig\", \"Sensi\", \"Nhẹ tâm\", \"Lock\", \"Ump Trick\", \"ShotBot\", \"Aimlock V2\"];\n  let selectedOption = await showMenu(options);\n  \n  if (selectedOption !== -1) {\n    let option = options[selectedOption];\n    let alert = new Alert();\n    alert.message = `Đã bật ${option}`;\n    alert.addAction(\"OK\");\n    await alert.present();\n\n    \n    let fileURL = await DocumentPicker.open();\n    if (fileURL) {\n      let alert = new Alert();\n      alert.message = `Đã chọn tệp: ${fileURL}`;\n      alert.addAction(\"OK\");\n      await alert.present();\n    }\n    \n    let urls = [\"Mở Free Fire\", \"Mở Free Fire Max\"];\n    let selectedURL = await showMenu(urls);\n    \n    if (selectedURL === 0) {\n      Safari.open(\"freefire:\/\/\");\n    } else if (selectedURL === 1) {\n      Safari.open(\"freefiremax:\/\/\");\n    }\n  }\n} else {\n  let alert = new Alert();\n  alert.message = \"Sai mật khẩu!\";\n  alert.addAction(\"OK\");\n  await alert.present();\n}\n\nfunction promptPassword() {\n  let alert = new Alert();\n  alert.title = \"Nhập Mật Khẩu\";\n  alert.message = \"Vui lòng nhập mật khẩu:\";\n  alert.addTextField(\"Mật Khẩu:HoangTu\");\n  alert.addAction(\"OK\");\n  return alert.present().then(result => alert.textFieldValue(0));\n}\n\nfunction showMenu(options) {\n  let alert = new Alert();\n  alert.title = \"Chọn Chức Năng\";\n  for (let option of options) {\n    alert.addAction(option);\n  }\n  return alert.presentSheet().then(result => result);\n}",
+  "share_sheet_inputs" : [
+
+  ]
+}
